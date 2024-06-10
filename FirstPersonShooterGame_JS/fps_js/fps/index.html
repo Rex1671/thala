@@ -42,18 +42,33 @@
             Esc = Pause
         </div>
     </div>
-    <script>
+   <script>
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-audio', {
+      videoId: 'JAIVxKw36Rg',
+      playerVars: {
+        autoplay: 1,
+        loop: 1,
+        controls: 0,
+        showinfo: 0,
+        modestbranding: 1,
+        mute: 1
+      },
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
 
-        var sound = new Howl({
-          src: ['KOYAL.MP3'],
-          loop: true, 
-          autoplay: true 
-        });
-      
-       setTimeout(function() {
-          sound.volume(0.2);
-        }, 3000);
-      </script>
+  function onPlayerReady(event) {
+    event.target.setVolume(50);
+  }
+</script>
+
+<div id="youtube-audio" style="display:none;"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
     <style>
         body{
             margin: 0;
